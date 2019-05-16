@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>2カラム</title>
+
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        * {
+            box-sizing: inherit;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            word-wrap: break-word;
+            background-color: #eee;
+            width: 100%;
+        }
+
+        .side {
+            width: 250px;
+            background-color: #ee0;
+
+            transition: margin-left 0.3s;
+        }
+
+        .side-hide {
+            margin-left: -250px;
+        }
+
+        .content {
+            flex: 1;
+            background-color: #ccf;
+            min-height: 100vh;
+        }
+
+        .another-flex {
+            display: flex;
+            width: 100%;
+            background-color: #ddd;
+            justify-content: center;
+        }
+
+        .another-flex .column-a {
+            width: 100px;
+            height: 100px;
+            background-color: #fee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .another-flex .column-b {
+            width: 100px;
+            height: 100px;
+            background-color: #efe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.querySelector('.side');
+            menu.classList.toggle('side-hide');
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <side class="side">
+            サイドメニュー領域
+        </side>
+        <main class="content">
+            flex boxで2カラム
+            <button onClick="toggleMenu();">メニュー</button>
+
+            <div class="another-flex">
+                <div class="column-a">a</div>
+                <div class="column-b">b</div>
+            </div>
+
+        </main>
+    </div>
+</body>
+
+</html>

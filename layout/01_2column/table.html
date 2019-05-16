@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>2カラム</title>
+
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        * {
+            box-sizing: inherit;
+            margin: 0;
+        }
+
+        .container {
+            display: table;
+            table-layout: fixed;
+            word-wrap: break-word;
+            background-color: #eee;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .side {
+            display: table-cell;
+            width: 250px;
+            background-color: #ee0;
+        }
+
+        .side-hide {
+            margin-left: -250px;
+        }
+
+        .content {
+            display: table-cell;
+            background-color: #00e;
+            width: 100%;
+        }
+    </style>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.querySelector('.side');
+            menu.classList.toggle('side-hide');
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <side class="side">
+            サイドメニュー領域
+        </side>
+        <main class="content">
+            display: tableで2カラム。ページ本体<br />
+            <button onClick="toggleMenu();">メニュー</button>
+        </main>
+    </div>
+</body>
+
+</html>

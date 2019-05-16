@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>2カラム</title>
+
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        * {
+            box-sizing: inherit;
+            margin: 0;
+        }
+
+        .container {
+            word-wrap: break-word;
+
+            background-color: #eee;
+            min-height: 100vh;
+        }
+
+        .container:after {
+            display: block;
+            clear: both;
+            content: '';
+        }
+
+        .side {
+            background-color: #ee0;
+            float: left;
+            width: 250px;
+            min-height: 100%;
+        }
+
+        .content {
+            z-index: 10000;
+            background-color: #ccf;
+
+            float: right;
+            width: 100%;
+            margin-left: -250px;
+            padding-left: 250px;
+            transition: padding-left 0.3s;
+            text-align: left;
+            min-height: 100vh;
+        }
+
+        .content-hide-menu {
+            margin-left: 0;
+            padding-left: 0;
+        }
+    </style>
+
+    <script>
+        function toggleMenu() {
+            var content = document.querySelector('.content');
+            content.classList.toggle('content-hide-menu');
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <side class="side">
+            サイドメニュー領域
+        </side>
+        <div class="content">
+            calcで幅を計算。ページ本体
+            <button onClick="toggleMenu();">メニュー</button>
+
+        </div>
+    </div>
+</body>
+
+</html>
