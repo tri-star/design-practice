@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>ヘッダ</title>
+
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        * {
+            box-sizing: inherit;
+            margin: 0;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            height: 60px;
+
+            background: #6c7b99;
+            background: -moz-linear-gradient(-45deg, #6c7b99 0%, #363d4c 100%);
+            background: -webkit-linear-gradient(-45deg, #6c7b99 0%, #363d4c 100%);
+            background: linear-gradient(135deg, #6c7b99 0%, #363d4c 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7b99', endColorstr='#363d4c', GradientType=1);
+
+        }
+
+        .header .title {
+            margin-left: 10px;
+            flex-grow: 1;
+
+            color: #eee;
+            text-shadow: 1px -1px 0 rgba(0, 0, 0, 1.0);
+        }
+
+        .header-menu {
+            flex-grow: 0;
+            display: flex;
+            align-content: center;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+        .header-menu li {
+            list-style: none;
+            width: 100px;
+            height: 40px;
+            border: 1px solid #000;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-menu li a {
+            color: #eee;
+            text-shadow: 1px -1px 0 rgba(0, 0, 0, 1.0);
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            flex: 1;
+            background-color: #eee;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+    <script>
+    </script>
+
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="title">ヘッダー領域</h1>
+        <ul class="header-menu">
+            <li>
+                <a href="">USER</a>
+            </li>
+            <li><a href="#">CONTACT</a></li>
+            <li><a href="#">HELP</a></li>
+        </ul>
+    </header>
+    <div class="container">
+        <main class="content">
+            メイン領域
+        </main>
+    </div>
+</body>
+
+</html>
