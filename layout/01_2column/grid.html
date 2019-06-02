@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>2カラム: CSS Grid</title>
+
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        * {
+            box-sizing: inherit;
+            margin: 0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            grid-template-rows: 100px 1fr;
+            grid-template-areas:
+                "header header"
+                "menu   main";
+
+            word-wrap: break-word;
+            background-color: #eee;
+            width: 100%;
+            transition: 0.5s;
+        }
+
+        .header {
+            grid-area: "header";
+            grid-column: span 2;
+            background-color: "#f80";
+        }
+
+        .side-hide {
+            grid-template-columns: 50px 1fr;
+            transition: 0.5s;
+        }
+
+        .side-hide .menu-content {
+            display: none;
+        }
+
+        .side-hide .side .menu-content-small {
+            display: block;
+        }
+
+
+        .side {
+            grid-area: "menu";
+            background-color: #ee0;
+        }
+
+        .side .menu-content-small {
+            display: none;
+        }
+
+        .menu-content-small .item {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #000;
+            background-color: #fff;
+        }
+
+        .content {
+            grid-area: "main";
+            background-color: #ccf;
+            min-height: 100vh;
+        }
+    </style>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.querySelector('.container');
+            menu.classList.toggle('side-hide');
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            ヘッダ領域
+        </header>
+        <side class="side">
+            <div class="menu-content">サイドメニュー領域</div>
+            <div class="menu-content-small">
+                <div class="item">A</div>
+                <div class="item">B</div>
+                <div class="item">C</div>
+            </div>
+        </side>
+        <main class="content">
+            CSS Gridで2カラム
+            <button onClick="toggleMenu();">メニュー</button>
+            <ul>
+                <li>ナビゲーションで右メニューを縮小表示する場合、縮小時に内部のテキストが折り返さないよう非表示にする</li>
+            </ul>
+        </main>
+    </div>
+</body>
+
+</html>
