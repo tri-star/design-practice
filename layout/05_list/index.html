@@ -1,0 +1,423 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>一覧画面</title>
+
+    <script src="./stickyfill.js"></script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            //現在のところIE11で試してもこれは効いていない
+            var elements = document.querySelectorAll('.list-table th');
+            Stickyfill.add(elements);
+
+        }, false);
+
+    </script>
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        * {
+            box-sizing: inherit;
+            margin: 0;
+        }
+
+        body {}
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+            justify-content: start;
+            align-items: center;
+            align-content: center;
+            /* background-color: */
+        }
+
+        .list-form {
+            margin-top: 50px;
+            width: 900px;
+            background-color: #fee;
+            padding: 5px;
+
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.2) -1px 1px 0, rgba(255, 255, 255, 0.7) -1px 1px inset;
+
+            display: grid;
+            justify-content: space-between;
+            align-content: start;
+            justify-items: start;
+            align-items: center;
+            grid-template-columns: 80px minmax(100px, 1fr);
+            gap: 10px;
+
+        }
+
+        .col-button {
+            grid-column: span 2;
+            justify-self: end;
+        }
+
+        .label {
+            display: block;
+            width: 80px;
+        }
+
+        .input {
+            display: block;
+            width: 100%;
+        }
+
+        .input-text {
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            padding: 8px;
+
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.3) -1px 1px 1px inset, rgba(255, 255, 255, 0.6) -1px 1px 0;
+
+        }
+
+        .input-select {
+            height: 40px;
+            padding: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.3) -1px 1px 1px inset, rgba(255, 255, 255, 0.6) -1px 1px 0;
+        }
+
+        .input-select option {
+            padding: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.3) -1px 1px 1px inset, rgba(255, 255, 255, 0.6) -1px 1px 0;
+        }
+
+        button {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #ffffff;
+            background: -moz-linear-gradient(-45deg, #ffffff 0%, #f3f3f3 50%, #ededed 51%, #ffffff 100%);
+            background: -webkit-linear-gradient(-45deg, #ffffff 0%, #f3f3f3 50%, #ededed 51%, #ffffff 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f3f3f3 50%, #ededed 51%, #ffffff 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1);
+            border-radius: 2px;
+            text-decoration: none;
+            border: 1px solid rgba(100, 100, 255, 0.3);
+
+            background-size: 150%;
+            transition: background-position 0.2s;
+        }
+
+        button:hover {
+            background-position: right center;
+        }
+
+        button:active {
+            padding-left: 18px;
+            padding-right: 14px;
+            padding-top: 10px;
+            padding-bottom: 6px;
+
+        }
+
+        .list-table-container {}
+
+        .list-table {
+            border-collapse: collapse;
+            width: 100vw;
+            margin: 10px 10px;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            box-shadow: rgba(0, 0, 0, 0.2) -2px 2px 0, rgba(255, 255, 255, 0.7) -2px 2px inset;
+        }
+
+        .list-table th {
+            position: sticky;
+            top: 0;
+            border: 1px solid #666;
+            padding: 5px;
+            background-color: #fee;
+
+        }
+
+        .list-table td {
+            border: 1px solid #666;
+            padding: 5px;
+
+        }
+
+
+        .col-id {
+            width: 40px;
+        }
+
+        .col-name {
+            width: 150px;
+        }
+
+        .col-address {
+            width: 300px;
+        }
+
+        .col-date {
+            width: 150px;
+        }
+    </style>
+
+    <script>
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="list-form">
+            <div class="label"><label>Name</label></div>
+            <div class="input"><input name="id" class="input-text"></div>
+            <div class="label"><label>Job</label></div>
+            <div class="input"><select class="input-select">
+                    <option>aaa</option>
+                    <option>aaa</option>
+                    <option>aaa</option>
+                    <option>aaa</option>
+                </select></div>
+            <div class="label"><label>Age</label></div>
+            <div class="input"><input name="age-min" class="input-text"> ～ <input name="age-max" class="input-text">
+            </div>
+            <div class="col-button"><button>SAVE</button></div>
+        </div>
+
+        <div class="list-table-container">
+            <table class="list-table sticky_table">
+                <thead>
+                    <tr>
+                        <th class="col-id">ID</th>
+                        <th class="col-name">NAME</th>
+                        <th class="col-address">ADDRESS</th>
+                        <th class="col-memo">MEMO</th>
+                        <th class="col-date">CREATED</th>
+                        <th class="col-date">UPDATED</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">100</td>
+                        <td class="col-name">Name Name</td>
+                        <td class="col-address">100-0001 東京都千代田区1-1-1 ビル名 100</td>
+                        <td class="col-memo">これはメモです。
+                            改行することがあります。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。これはメモです。
+
+                        </td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                        <td class="col-date">2019-01-01 00:00:00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+
+</html>
