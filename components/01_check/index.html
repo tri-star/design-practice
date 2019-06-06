@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>チェックボックス</title>
+    <meta name="view-port" content="width=device-width,initial-scale=1.0">
+
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            justify-items: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .form {
+            flex-basis: 200px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+
+        input[type=checkbox] {
+            display: none;
+            /* checkboxを非表示にする */
+        }
+
+        .label {
+            position: relative;
+            padding: 0 0 0 42px;
+            /* ボックス内側の余白を指定する */
+        }
+
+        .label:hover:after {
+            border-color: #0171bd;
+            /* ボックスの境界線を実線で指定する */
+        }
+
+        .label:after,
+        .label:before {
+            position: absolute;
+            content: "";
+            display: block;
+            top: 50%;
+        }
+
+        .label:after {
+            left: 15px;
+            margin-top: -10px;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .label:before {
+            left: 21px;
+            margin-top: -7px;
+            width: 5px;
+            height: 9px;
+            border-right: 3px solid #0171bd;
+            border-bottom: 3px solid #0171bd;
+            transform: rotate(45deg);
+            opacity: 0;
+        }
+
+        input[type=checkbox]:checked+.label:before {
+            opacity: 1;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="form">
+            <input type="checkbox" name="#" value="test" id="test1" />
+            <label for="test1" class="label">テスト</label>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
