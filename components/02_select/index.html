@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>セレクトボックス1</title>
+    <meta name="view-port" content="width=device-width,initial-scale=1.0">
+
+
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        * {
+            box-sizing: inherit;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .select {
+
+            padding: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            box-shadow: 1, -1, 0, rgba(0, 0, 0, 0.3);
+            width: 200px;
+            position: relative;
+
+        }
+
+        .select:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .select::after {
+            color: rgba(0, 0, 0, 0.3);
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            content: "↓";
+        }
+
+        .select .title {
+            color: #888;
+            display: block;
+        }
+
+        .select ul {
+            list-style: none;
+            padding-left: 0px;
+
+            position: absolute;
+            z-index: 100;
+            left: 0;
+            width: calc(100%);
+            overflow: hidden;
+
+            max-height: 0;
+            opacity: 0;
+            transition: 0.5s;
+
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .select.show-menu ul {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .select ul li {
+            display: block;
+            height: 30px;
+        }
+
+        .select ul li input[type="radio"] {
+            display: none;
+        }
+
+        .select ul li label {
+            display: block;
+            padding: 5px;
+            background-color: #fff;
+        }
+
+        .select ul li label:hover {
+            background-color: #fee;
+        }
+
+        .select ul li input:checked+label {
+            background-color: #ecc;
+        }
+    </style>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var radios = document.querySelectorAll('input[type="radio"]');
+            var len = radios.length;//IE11ではforEachが利用不可、for-inは遅いので利用しない
+            for (var i = 0; i < len; i++) {
+                radios[i].addEventListener('change', function (e) {
+
+                    var label = e.target.nextSibling
+
+                    var title = document.querySelector('.select .title');
+                    title.innerHTML = label.innerHTML;
+
+                    toggle();
+                });
+
+            }
+        }, false);
+
+        function toggle() {
+            var menu = document.querySelector('.select');
+            menu.classList.toggle('show-menu');
+
+            var menuList = document.querySelector('.select ul');
+            menuList.style.top = menu.style.height;
+
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="select">
+            <span class="title" onClick="toggle()">未選択</span>
+            <ul>
+                <li><input type="radio" name="test" value="1" id="test-1" /><label for="test-1">aaa-1</label></li>
+                <li><input type="radio" name="test" value="2" id="test-2" /><label for="test-2">aaa-2</label></li>
+                <li><input type="radio" name="test" value="3" id="test-3" /><label for="test-3">aaa-3</label></li>
+                <li><input type="radio" name="test" value="4" id="test-4" /><label for="test-4">aaa-4</label></li>
+                <li><input type="radio" name="test" value="5" id="test-5" /><label for="test-5">aaa-5</label></li>
+                <li><input type="radio" name="test" value="6" id="test-6" /><label for="test-6">aaa-6</label></li>
+            </ul>
+
+        </div>
+
+</body>
+
+</html>
