@@ -26,12 +26,14 @@
         .side {
             width: 250px;
             background-color: #ee0;
-
-            transition: margin-left 0.3s;
+            transition: width 0.3s, opacity 0.3s;
+            overflow: hidden;
+            overflow-wrap: normal;
+            word-break: keep-all;
         }
 
         .side-hide {
-            margin-left: -250px;
+            width: 50px;
         }
 
         .content {
@@ -64,6 +66,29 @@
             justify-content: center;
             align-items: center;
         }
+
+        .side .menu-content-small {
+            display: none;
+            opacity: 0;
+            transition: all 1.3s;
+        }
+        .side.side-hide .menu-content-small {
+            display: block;
+            opacity: 1.0;
+            transition: all 1.3s;
+        }
+
+        .menu-content-small .item {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #000;
+            background-color: #fff;
+        }
+
+
     </style>
 
     <script>
@@ -79,6 +104,11 @@
     <div class="container">
         <side class="side">
             サイドメニュー領域
+            <div class="menu-content-small">
+                <div class="item">A</div>
+                <div class="item">B</div>
+                <div class="item">C</div>
+            </div>
         </side>
         <main class="content">
             flex boxで2カラム
